@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -18,6 +19,7 @@ public class Eform_NewEvent {
     //主键
     private Integer id;
     //具体内容
+    @NotNull
     private String content;
     //创建时间
     private Date cretionDate;

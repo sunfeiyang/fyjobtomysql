@@ -3,12 +3,14 @@ package com.sunfy.fyjobtomysql.service.impl;
 import com.sunfy.fyjobtomysql.domain.Eform_NewEvent;
 import com.sunfy.fyjobtomysql.repository.Efrom_NewEventRepository;
 import com.sunfy.fyjobtomysql.service.EformService;
+import com.sunfy.fyjobtomysql.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 接口实现类
@@ -24,7 +26,7 @@ public class EformServiceImpl implements EformService {
     private Efrom_NewEventRepository efrom_NewEventRepository;
 
     @Override
-    public boolean NewEvent(Eform_NewEvent eformNewEvent) {
+    public Eform_NewEvent NewEvent(Eform_NewEvent eformNewEvent) {
         logger.info("NewEvent插入对象");
         Date date = new Date();
         date.getTime();
@@ -37,14 +39,14 @@ public class EformServiceImpl implements EformService {
             eform_newEvent.setUsercode("sunfy");
             eform_newEvent.setCretionDate(date);
             efrom_NewEventRepository.save(eform_newEvent);
-            return true;
+            return eform_newEvent;
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Eform_NewEvent getEventAboutUser(String usercode) {
-        Eform_NewEvent eform_newEvent = efrom_NewEventRepository.findByUsercodeIn(usercode);
-        return eform_newEvent;
+    public List<Eform_NewEvent> getEventAboutUser(String usercode) {
+        logger.info("根据usercode查询所有Event");
+        return efrom_NewEventRepository.findByUsercode(usercode);
     }
 }
