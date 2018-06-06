@@ -1,4 +1,4 @@
-package com.sunfy.fyjobtomysql.ecception;
+package com.sunfy.fyjobtomysql.exception;
 
 import com.sunfy.fyjobtomysql.enums.ResultEnum;
 
