@@ -1,9 +1,7 @@
 package com.sunfy.fyjobtomysql.utils;
 
-import com.sunfy.fyjobtomysql.domain.Eform_NewEvent;
 import com.sunfy.fyjobtomysql.po.ImageMessage;
 import com.sunfy.fyjobtomysql.po.TextMessage;
-import com.sunfy.fyjobtomysql.service.WXEformService;
 import com.thoughtworks.xstream.XStream;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -11,12 +9,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,16 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MessageUtil {
-
-    @Autowired
-    private WXEformService wxEformService;
-
-    public static MessageUtil messageUtil;
-
-    @PostConstruct
-    public void init() {
-        messageUtil = this;
-    }
 
     private final static Logger logger = LoggerFactory.getLogger(MessageUtil.class);
 
@@ -128,22 +111,7 @@ public class MessageUtil {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateNowStr = sdf.format(d);
         text.setCreateTime(dateNowStr);
-        //将内容写入数据库后再返回
-        Eform_NewEvent eform_newEvent = new Eform_NewEvent();
-        if (!content.isEmpty()) {
-            eform_newEvent.setContent(content);
-            eform_newEvent.setOrgCode("sfy");
-            eform_newEvent.setUsername("孙斐扬");
-            eform_newEvent.setUsercode("sunfy");
-            eform_newEvent.setCretionDate(d);
-            messageUtil.wxEformService.WXNewEvent(eform_newEvent);
-            logger.info("微信订阅号写入数据库成功！");
-            String wxContent = "事项 “"+content+"” 添加成功！";
-            text.setContent(wxContent);
-        } else {
-            text.setContent(content);
-        }
-
+        text.setContent(content);
         return textMessageToXml(text);
     }
 

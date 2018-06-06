@@ -84,7 +84,6 @@ public class weixinServlet extends HttpServlet {
                     message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.menuText());
                 }else{
                     message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.otherMenuText(content));
-                    //message="123455";
                 }
 
             }else if(MessageUtil.MESSAGE_EVENT.equals(mMsgType)){//判断是否是事件推送
@@ -108,7 +107,6 @@ public class weixinServlet extends HttpServlet {
             }
             out.print("服务器返回信息");
             out.print(message);
-
 
         } catch (DocumentException e) {
             e.printStackTrace();
