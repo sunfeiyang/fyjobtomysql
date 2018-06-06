@@ -213,7 +213,7 @@ public class MessageUtil {
      */
     public static String otherMenuText(String content){
         StringBuffer sb = new StringBuffer();
-        sb.append("您发送的消息是:"+content);
+        sb.append(content);
         return sb.toString();
     }
 
