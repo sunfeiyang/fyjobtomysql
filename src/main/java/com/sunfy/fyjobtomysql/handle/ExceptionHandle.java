@@ -1,7 +1,7 @@
 package com.sunfy.fyjobtomysql.handle;
 
 import com.sunfy.fyjobtomysql.domain.Result;
-import com.sunfy.fyjobtomysql.ecception.EformException;
+import com.sunfy.fyjobtomysql.exception.EformException;
 import com.sunfy.fyjobtomysql.enums.ResultEnum;
 import com.sunfy.fyjobtomysql.utils.ResultUtil;
 import org.slf4j.Logger;
