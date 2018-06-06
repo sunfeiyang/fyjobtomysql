@@ -32,6 +32,7 @@ public class MessageUtil {
 
     public static MessageUtil messageUtil;
 
+    //初始化对象
     @PostConstruct
     public void init() {
         messageUtil = this;
